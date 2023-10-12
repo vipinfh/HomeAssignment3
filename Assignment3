@@ -1,0 +1,147 @@
+class Engine {
+    private String type;
+
+    public Engine(String type) {
+        this.type = type;
+    }
+
+    public String getType() {
+        return type;
+    }
+}
+
+class CombustionEngine extends Engine {
+    public CombustionEngine() {
+        super("Combustion Engine");
+    }
+}
+
+class ElectricEngine extends Engine {
+    public ElectricEngine() {
+        super("Electric Engine");
+    }
+}
+
+class HybridEngine extends Engine {
+    public HybridEngine() {
+        super("Hybrid Engine");
+    }
+}
+
+class Manufacture {
+    private String manufacturerName;
+    private String location;
+
+    public Manufacture(String manufacturerName, String location) {
+        this.manufacturerName = manufacturerName;
+        this.location = location;
+    }
+
+    public String getManufacturerName() {
+        return manufacturerName;
+    }
+
+    public void setManufacturerName(String manufacturerName) {
+        this.manufacturerName = manufacturerName;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+}
+
+abstract class Vehicle {
+    private Manufacture manufacture;
+    private Engine engine;
+
+    public Vehicle(Manufacture manufacture, Engine engine) {
+        this.manufacture = manufacture;
+        this.engine = engine;
+    }
+
+    public Manufacture getManufacture() {
+        return manufacture;
+    }
+
+    public void setManufacture(Manufacture manufacture) {
+        this.manufacture = manufacture;
+    }
+
+    public Engine getEngine() {
+        return engine;
+    }
+
+    public void setEngine(Engine engine) {
+        this.engine = engine;
+    }
+
+    public abstract void showCharacteristics();
+}
+
+class ICEV extends Vehicle {
+    public ICEV(Manufacture manufacture, Engine engine) {
+        super(manufacture, engine);
+    }
+
+    @Override
+    public void showCharacteristics() {
+        System.out.println("Vehicle Type: ICEV");
+        System.out.println("Manufacturer: " + getManufacture().getManufacturerName());
+        System.out.println("Location: " + getManufacture().getLocation());
+        System.out.println("Engine Type: " + getEngine().getType());
+    }
+}
+
+class BEV extends Vehicle {
+    public BEV(Manufacture manufacture, Engine engine) {
+        super(manufacture, engine);
+    }
+
+    @Override
+    public void showCharacteristics() {
+        System.out.println("Vehicle Type: BEV");
+        System.out.println("Manufacturer: " + getManufacture().getManufacturerName());
+        System.out.println("Location: " + getManufacture().getLocation());
+        System.out.println("Engine Type: " + getEngine().getType());
+    }
+}
+
+class HybridV extends Vehicle {
+    public HybridV(Manufacture manufacture, Engine engine) {
+        super(manufacture, engine);
+    }
+
+    @Override
+    public void showCharacteristics() {
+        System.out.println("Vehicle Type: HybridV");
+        System.out.println("Manufacturer: " + getManufacture().getManufacturerName());
+        System.out.println("Location: " + getManufacture().getLocation());
+        System.out.println("Engine Type: " + getEngine().getType());
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Manufacture manufacturer1 = new Manufacture("Toyota", "Japan");
+        Manufacture manufacturer2 = new Manufacture("Tesla", "USA");
+
+        CombustionEngine combustionEngine = new CombustionEngine();
+        ElectricEngine electricEngine = new ElectricEngine();
+        HybridEngine hybridEngine = new HybridEngine();
+
+        Vehicle[] vehicles = {
+            new ICEV(manufacturer1, combustionEngine),
+            new BEV(manufacturer2, electricEngine),
+            new HybridV(manufacturer1, hybridEngine)
+        };
+
+        for (Vehicle vehicle : vehicles) {
+            vehicle.showCharacteristics();
+            System.out.println();
+        }
+    }
+}
