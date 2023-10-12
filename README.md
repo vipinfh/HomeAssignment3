@@ -9,8 +9,8 @@ This program was excecuted in JDK 21 and it was written in a Text Editor(Notepad
 
 For running the code.
 
-first download and save the file with CarManagement extension .java
+first download and save the file with Main.java
 
-Compile using javac CarManagement.java
+Compile using javac Main.java
 
-run using java CarManagement
+run using java Main
